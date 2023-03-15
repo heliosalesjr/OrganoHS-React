@@ -35,7 +35,7 @@ const Form = (props) => {
 
     return (
         <section className='form-main'>
-            <form  >
+            <form  onSubmit={onSave}>
                 <h2>Preecha os dados para criar o card do colaborador</h2>
                 <TextInputs 
                     obrigatorio={true} 

@@ -7,14 +7,15 @@ function App() {
 
   const [members, setMembers] = useState([]);
 
-  const onSave = (member) => {
+  const newTeamMember = (member) => {
+    console.log(member)
     setMembers([...members, member])
   }
 
   return (
     <div className="App">
       <Banner />
-      <Form onSave={member => teamMember(member)}/>
+      <Form teamMember={member => newTeamMember(member)}/>
     </div>
   );
 }
