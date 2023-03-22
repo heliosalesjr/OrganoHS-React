@@ -1,79 +1,67 @@
 import './Form.css'
-import TextInputs from '../TextInputs/TextInputs';
+import CampoTexto from '../TextInputs/TextInputs';
 import DropDown from '../DropDown/DropDown';
 import ButtonForm from '../ButtonForm/ButtonForm';
 import { useState } from 'react';
 
 const Form = (props) => {
 
-    const teams = [
-        'Programação',
-        'Front-End',
-        'Data-Science',
-        'Devops',
-        'UX e UI Design',
-        'Mobile',
-        'Inovação e Gestão'
-    ];
-
-    //os três estados:
-
     const [nome, setNome] = useState('')
     const [cargo, setCargo] = useState('')
     const [imagem, setImagem] = useState('')
-    const [times, setTimes] = useState('')
+    const [time, setTime] = useState('')
 
-    const onSave = (e) => {
-        e.preventDefault()
-        props.teamMember ({
-            nome: nome,
-            cargo: cargo,
-            imagem: imagem,
-            times: times
+    const aoSalvar = (evento) => {
+        evento.preventDefault()
+        props.aoColaboradorCadastrado({
+            nome,
+            cargo,
+            imagem,
+            time
         })
+        setNome('')
+        setCargo('')
+        setImagem('')
+        setTime('')
     }
 
     return (
-        <section className='form-main'>
-            <form  onSubmit={onSave}>
-                <h2>Preecha os dados para criar o card do colaborador</h2>
-                <TextInputs 
-                    obrigatorio={true} 
-                    label="Nome" 
-                    placeholder="Digite seu nome"
+        <section className="formulario">
+            <form onSubmit={aoSalvar}>
+                <h2>Preencha os dados para criar o card do colaborador</h2>
+                <CampoTexto 
+                    obrigatorio={true}
+                    label="Nome"
+                    placeholder="Digite seu nome" 
                     valor={nome}
-                    altered={valor => setNome(valor)}
-
+                    aoAlterado={valor => setNome(valor)}
                 />
-                <TextInputs 
+                <CampoTexto
+                    obrigatorio={true}
                     label="Cargo"
-                    obrigatorio={true} 
-                    placeholder="Digite seu cargo"
+                    placeholder="Digite seu cargo" 
                     valor={cargo}
-                    altered={valor => setCargo(valor)}
-
+                    aoAlterado={valor => setCargo(valor)}
                 />
-                <TextInputs 
-                    label="Imagem" 
-                    placeholder="Selecione sua imagem"
+                <CampoTexto
+                    label="Imagem"
+                    placeholder="Digite o endereÃ§o da imagem" 
                     valor={imagem}
-                    altered={valor =>setImagem(valor)}
-                
+                    aoAlterado={valor => setImagem(valor)}
                 />
-
-                <DropDown 
-                label="Times" 
-                item={teams}
-                valor={times}
-                altered={valor =>setTimes(valor)}
-
+                <DropDown
+                    obrigatorio={true}
+                    label="Time" 
+                    itens={props.times}
+                    valor={time}
+                    aoAlterado={valor => setTime(valor)}
                 />
-                <ButtonForm text='Clica, mona'/>
+                <ButtonForm text={'Bora mona'} /> 
             </form>
         </section>
-
     )
 }
+
 
 
 export default Form;

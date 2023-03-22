@@ -1,20 +1,21 @@
 import './TextInputs.css';
 
-const TextInputs = (props) => {
+const CampoTexto = (props) => {
 
-    const modifiedPlaceholder = `${props.placeholder}...`
+    const placeholderModificada = `${props.placeholder}...` 
 
-    const typed = (e) => {
-        props.altered(e.target.value)
+    const aoDigitado = (evento) => {
+        props.aoAlterado(evento.target.value)
     }
 
     return (
-        <div className='text-field'>
-            <label>{props.label}</label>
-            <input  value={props.valor} onChange={typed} required={props.obrigatorio} placeholder= {modifiedPlaceholder}/>
+        <div className="text-field">
+            <label>
+                {props.label}
+            </label>
+            <input value={props.valor} onChange={aoDigitado} required={props.obrigatorio} placeholder={placeholderModificada}/>
         </div>
-
     )
 }
 
-export default TextInputs
+export default CampoTexto
